@@ -6,9 +6,9 @@ import numpy as np
 import requests
 
 url = "https://drive.google.com/uc?id=1xeDav1T6ZhPahojCAhoKOr5iQZI559fi"
-model = requests.get(url)
+response = requests.get(url)
 with open("regression_model.pkl", "wb") as file:
-    file.write(model.content)
+    file.write(response.content)
 
 try:
     with open("regression_model.pkl", "rb") as file:
