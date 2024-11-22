@@ -5,10 +5,12 @@ import numpy as np
 # Load the trained model
 import requests
 
-url = "https://drive.google.com/file/d/1xeDav1T6ZhPahojCAhoKOr5iQZI559fi/view?usp=sharing"
+url = "https://drive.google.com/uc?id=1xeDav1T6ZhPahojCAhoKOr5iQZI559fi"
 response = requests.get(url)
 with open("regression_model.pkl", "wb") as file:
     file.write(response.content)
+with open("regression_model.pkl", "rb") as file:
+    model = pickle.load(file)
 
 
 # App title
