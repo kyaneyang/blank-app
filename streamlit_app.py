@@ -1,10 +1,13 @@
 import streamlit as st
 import pickle
 import numpy as np
+import requests
 
 # Load the trained model
-with open("regression_model.pkl", "rb") as file:
-    model = pickle.load(file)
+url = "https://drive.google.com/file/d/1xeDav1T6ZhPahojCAhoKOr5iQZI559fi/view?usp=sharing"
+response = requests.get(url)
+with open("regression_model.pkl", "wb") as file:
+    file.write(response.content)
 
 # App title
 st.title("California Housing Price Predictor")
