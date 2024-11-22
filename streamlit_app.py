@@ -4,19 +4,23 @@ import numpy as np
 
 # Load the trained model
 import requests
+import io
 
+# URL to the hosted model file
 url = "https://drive.google.com/uc?id=1xeDav1T6ZhPahojCAhoKOr5iQZI559fi"
-response = requests.get(url)
-with open("regression_model.pkl", "wb") as file:
-    file.write(response.content)
 
 try:
-    with open("regression_model.pkl", "rb") as file:
-        model = pickle.load(file)
-    st.write("Model loaded successfully!")
+    # Download the model file from the URL
+    response = requests.get(url)
+    response.raise_for_status()  # Raise an error for HTTP issues
+
+    # Load the model directly from the downloaded content
+    model = pickle.load(io.BytesIO(response.content))
+    print("Model loaded successfully!")
 except Exception as e:
-    st.error(f"Error loading model: {e}")
+    print(f"Error loading model: {e}")
     model = None
+
 
 
 # App title
