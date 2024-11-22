@@ -10,6 +10,15 @@ model = requests.get(url)
 with open("regression_model.pkl", "wb") as file:
     file.write(model.content)
 
+try:
+    with open("regression_model.pkl", "rb") as file:
+        model = pickle.load(file)
+    st.write("Model loaded successfully!")
+except Exception as e:
+    st.error(f"Error loading model: {e}")
+    model = None
+
+
 # App title
 st.title("California Housing Price Predictor")
 
