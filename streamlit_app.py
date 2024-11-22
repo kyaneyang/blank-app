@@ -9,6 +9,9 @@ response = requests.get(url)
 with open("regression_model.pkl", "wb") as file:
     file.write(response.content)
 
+with open("regression_model.pkl", "rb") as file:
+    model = pickle.load(file)
+
 # App title
 st.title("California Housing Price Predictor")
 
